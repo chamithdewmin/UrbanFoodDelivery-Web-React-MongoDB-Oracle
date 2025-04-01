@@ -1,0 +1,62 @@
+.header {
+  height: 44vw;
+  margin: 30px auto;
+  background: url("/src/assets/1.png") no-repeat;
+  background-size: contain;
+  position: relative;
+  animation: fadeInBottom 2s;
+}
+
+.header-contents {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1.5vw;
+  max-width: 50%;
+  bottom: 10%;
+}
+
+.header-contents h2 {
+  font-weight: 500;
+  color: black;
+  font-size: max(4.5vw, 22px);
+  animation: fadeInLeft 2s;
+}
+
+.header-contents p {
+  color: rgb(41, 41, 41);
+  font-size: 1vw;
+  animation: fadeIn 2s;
+}
+
+.header-contents button {
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 1vw 2.3vw;
+  border-radius: 25px;
+  font-size: max(1vw, 13px);
+  cursor: pointer;
+  animation: fadeInBottom 2s;
+}
+.header-contents button:hover {
+  background-color: #464646;
+}
+
+@media (max-width: 1050px) {
+  .header-contents {
+    max-width: 45%;
+  }
+}
+@media (max-width: 750px) {
+  .header-contents {
+    max-width: 55%;
+  }
+  .header-contents p {
+    display: none;
+  }
+  .header-contents button {
+    padding: 2vw 4vw;
+  }
+}
