@@ -124,14 +124,14 @@ const Add = () => {
               required
             >
               <option value="">Select Category</option>
-              <option value="Salad">Salad</option>
-              <option value="Rolls">Rolls</option>
-              <option value="Sandwich">Sandwich</option>
-              <option value="Cake">Cake</option>
-              <option value="Pure Veg">Pure Veg</option>
-              <option value="Pasta">Pasta</option>
-              <option value="Noodles">Noodles</option>
-              <option value="Deserts">Deserts</option>
+              <option value="Salad">Pizza</option>
+              <option value="Rolls">Burger</option>
+              <option value="Sandwich">Sushi</option>
+              <option value="Cake">Pasta</option>
+              <option value="Pure Veg">Ice cream</option>
+              <option value="Pasta">Fried rice</option>
+              <option value="Noodles">Tacos</option>
+              <option value="Deserts">Cake</option>
             </select>
           </div>
           <div className="add-price flex-col">

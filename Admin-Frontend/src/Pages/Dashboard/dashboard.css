@@ -21,7 +21,7 @@
 }
 
 .download-button {
-  background-color: #4CAF50;
+  background-color: #ffb400;
   color: white;
   border: none;
   padding: 0.8rem 1.5rem;
@@ -32,7 +32,7 @@
 }
 
 .download-button:hover {
-  background-color: #45a049;
+  background-color: #ffb400;
 }
 
 .stats-container {

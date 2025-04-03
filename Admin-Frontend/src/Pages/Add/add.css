@@ -47,7 +47,7 @@
     max-width: 120px;
     padding: 10px;
     border-radius: 5px;
-    background-color: #47e12c;
+    background-color: #ffb400;
     color: #ffffff;
     cursor: pointer;
 }
@@ -68,7 +68,7 @@
   }
   
   .alert-box.success {
-    background: #4CAF50;
+    background: #ffb400;
   }
   
   .alert-box.error {

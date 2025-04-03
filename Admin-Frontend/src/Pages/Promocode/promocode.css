@@ -114,7 +114,7 @@ input.error {
 }
 
 .send-button {
-  background-color: #27ae60;
+  background-color: #ffb400;
   color: white;
   padding: 1rem;
   border: none;
@@ -126,7 +126,7 @@ input.error {
 }
 
 .send-button:hover:not(:disabled) {
-  background-color: #219a52;
+  background-color: #ffb400;
 }
 
 .send-button:disabled {
