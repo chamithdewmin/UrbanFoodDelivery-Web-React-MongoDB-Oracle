@@ -33,13 +33,13 @@ const Footer = () => {
           <h2>GET IN TOUCH</h2>
           <ul>
             <li>+1-435-535-3535</li>
-            <li>contact@CeylonBrew.com</li>
+            <li>contact@Urbanfood.com</li>
           </ul>
         </div>
       </div>
       <hr />
       <p className="footer-copyright">
-        Copyright © CeylonBrew.com - All Rights Reserved.
+        Copyright © Urban Food.com - All Rights Reserved.
       </p>
     </div>
   );

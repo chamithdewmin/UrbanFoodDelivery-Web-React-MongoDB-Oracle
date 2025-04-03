@@ -4,13 +4,14 @@ import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
 
+
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
 
   const { token, setToken, cartDetails, setCartDetails, setUserId } =
     useContext(StoreContext);
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.setItem("token", "");
@@ -51,6 +52,13 @@ const Navbar = ({ setShowLogin }) => {
           className={menu === "menu" ? "active" : ""}
         >
           Menu
+        </a>
+        <a
+          href="/#user-review"
+          onClick={() => setMenu("Feedback")}
+          className={menu === "user-review" ? "active" : ""}
+        >
+          Feedback
         </a>
         <a
           href="/#footer"

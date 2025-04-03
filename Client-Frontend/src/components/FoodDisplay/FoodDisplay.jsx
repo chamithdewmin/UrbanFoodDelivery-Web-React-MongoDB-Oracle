@@ -52,7 +52,7 @@ const FoodDisplay = ({ category }) => {
   if (isLoading) {
     return (
       <div className="food-display" id="food-display">
-        <h2>Stock Bottles</h2>
+        <h2>Menu</h2>
         <div className="food-display-list">
           <SkeletonCard />
           <SkeletonCard />
