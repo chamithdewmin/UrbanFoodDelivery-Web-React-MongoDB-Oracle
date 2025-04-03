@@ -6,7 +6,7 @@ export const AdminContext = createContext(null);
 
 const AdminContextProvider = (props) => {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
-  const url = "http://localhost:8082";
+  const url = "http://localhost:3000";
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();

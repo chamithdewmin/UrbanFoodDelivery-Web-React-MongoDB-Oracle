@@ -1,0 +1,124 @@
+-- Create a new user
+CREATE USER urbanfood IDENTIFIED BY password123;
+
+-- Grant necessary privileges
+GRANT CONNECT, RESOURCE, DBA TO urbanfood;
+
+
+-- Customers Table
+CREATE TABLE customers (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR2(100) NOT NULL,
+    email VARCHAR2(150) UNIQUE NOT NULL,
+    phone VARCHAR2(15),
+    address VARCHAR2(255)
+);
+
+-- Suppliers Table
+CREATE TABLE suppliers (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR2(100) NOT NULL,
+    location VARCHAR2(255) NOT NULL
+);
+
+-- Products Table
+CREATE TABLE products (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR2(255) NOT NULL,
+    category VARCHAR2(100),
+    price NUMBER(10, 2) NOT NULL,
+    supplier_id NUMBER,
+    FOREIGN KEY (supplier_id) REFERENCES suppliers(id) ON DELETE CASCADE
+);
+
+-- Orders Table
+CREATE TABLE orders (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    customer_id NUMBER,
+    order_date DATE DEFAULT SYSDATE,
+    total_amount NUMBER(10, 2) NOT NULL,
+    status VARCHAR2(50) DEFAULT 'Pending',
+    FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE
+);
+
+-- Order Items Table (for multiple products per order)
+CREATE TABLE order_items (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    order_id NUMBER,
+    product_id NUMBER,
+    quantity NUMBER NOT NULL,
+    price NUMBER(10, 2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+
+-- Payments Table
+CREATE TABLE payments (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    order_id NUMBER,
+    amount NUMBER(10, 2) NOT NULL,
+    payment_date DATE DEFAULT SYSDATE,
+    status VARCHAR2(50) DEFAULT 'Pending',
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+);
+
+-- Insert Customers
+INSERT INTO customers (name, email, phone, address) 
+VALUES ('John Doe', 'john@example.com', '1234567890', '123 Main St');
+
+INSERT INTO customers (name, email, phone, address) 
+VALUES ('Jane Smith', 'jane@example.com', '0987654321', '456 Elm St');
+
+
+-- Insert Suppliers
+INSERT INTO suppliers (name, location) 
+VALUES 
+('ABC Suppliers', 'New York');
+
+
+-- Insert Products
+INSERT INTO products (name, category, price, supplier_id) 
+VALUES 
+('Apple', 'Fruits', 1.50, 1);
+
+-- Insert Orders
+INSERT INTO orders (customer_id, total_amount, status) 
+VALUES 
+(1, 15.00, 'Pending');
+
+-- Insert Order Items
+INSERT INTO order_items (order_id, product_id, quantity, price) 
+VALUES 
+(4, 1, 5, 7.50);
+
+-- Insert Payments
+INSERT INTO payments (order_id, amount, status) 
+VALUES 
+(4, 15.00, 'Completed');
+
+
+
+BEGIN
+    process_order(1);
+END;
+/
+
+SELECT o.id, c.name AS customer_name, o.order_date, o.total_amount, o.status 
+FROM orders o 
+JOIN customers c ON o.customer_id = c.id;
+
+SELECT p.name, p.category, p.price, s.name AS supplier_name 
+FROM products p 
+JOIN suppliers s ON p.supplier_id = s.id 
+WHERE s.id = 1;
+
+SELECT p.id, c.name AS customer_name, p.amount, p.status 
+FROM payments p 
+JOIN orders o ON p.order_id = o.id
+JOIN customers c ON o.customer_id = c.id 
+WHERE p.status = 'Pending';
+
+SELECT * FROM orders;
+
+
+
